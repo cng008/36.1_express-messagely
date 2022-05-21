@@ -1,4 +1,6 @@
+const express = require('express');
 const router = new express.Router();
+
 const Message = require('../models/message');
 const { ensureLoggedIn } = require('../middleware/auth');
 const ExpressError = require('../expressError');
@@ -75,3 +77,5 @@ router.post('/:id/read', ensureLoggedIn, async (req, res, next) => {
     return next(err);
   }
 });
+
+module.exports = router;

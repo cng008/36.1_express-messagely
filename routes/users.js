@@ -1,4 +1,6 @@
+const express = require('express');
 const router = new express.Router();
+
 const User = require('../models/user');
 const { ensureLoggedIn, ensureCorrectUser } = require('../middleware/auth');
 
@@ -65,3 +67,5 @@ router.get('/:username/from', ensureCorrectUser, async (req, res, next) => {
     return next(err);
   }
 });
+
+module.exports = router;
