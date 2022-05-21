@@ -14,7 +14,10 @@ router.post('/login', async (req, res, next) => {
     if (await User.authenticate(username, password)) {
       const token = jwt.sign({ username }, SECRET_KEY);
       User.updateLoginTimestamp(username);
-      return res.json({ token });
+      return res.json({
+        message: `Hi, ${username}! You've been successfully logged in.`,
+        token
+      });
     } else {
       throw new ExpressError('Invalid username/password', 400);
     }
