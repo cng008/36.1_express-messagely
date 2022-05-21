@@ -108,16 +108,16 @@ class User {
   static async messagesFrom(username) {
     const results = await db.query(
       `SELECT m.id,
-              m.to_username,
-              u.first_name,
-              u.last_name,
-              u.phone,
-              m.body,
-              m.sent_at,
-              m.read_at,
+                m.to_username,
+                u.first_name,
+                u.last_name,
+                u.phone,
+                m.body,
+                m.sent_at,
+                m.read_at
         FROM messages AS m
           JOIN users AS u ON m.to_username = u.username
-        WHERE m.to_username = $1`,
+          WHERE from_username = $1`,
       [username]
     );
 

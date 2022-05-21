@@ -12,7 +12,7 @@ router.post('/login', async (req, res, next) => {
   try {
     const { username, password } = req.body;
     if (await User.authenticate(username, password)) {
-      let token = jwt.sign({ username }, SECRET_KEY);
+      const token = jwt.sign({ username }, SECRET_KEY);
       User.updateLoginTimestamp(username);
       return res.json({ token });
     } else {
@@ -29,12 +29,13 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/register', async (req, res, next) => {
   try {
-    let { username } = await User.register(req.body);
-    let token = jwt.sign({ username }, SECRET_KEY);
+    const { username } = await User.register(req.body);
+    const token = jwt.sign({ username }, SECRET_KEY);
     User.updateLoginTimestamp(username);
     return res.json({ token });
   } catch (err) {
-    if (e.code === '23505') {
+    console.log(err);
+    if (err.code === '23505') {
       return next(
         new ExpressError('Username taken, please pick another.', 400)
       );
