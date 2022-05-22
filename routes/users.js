@@ -4,7 +4,7 @@ const router = new express.Router();
 const User = require('../models/user');
 const { ensureLoggedIn, ensureCorrectUser } = require('../middleware/auth');
 
-/** GET / - get list of users.
+/** get list of users.
  *
  * => {users: [{username, first_name, last_name, phone}, ...]}
  *
@@ -18,7 +18,7 @@ router.get('/', ensureLoggedIn, async (req, res, next) => {
   }
 });
 
-/** GET /:username - get detail of users.
+/** get detail of users.
  *
  * => {user: {username, first_name, last_name, phone, join_at, last_login_at}}
  *
@@ -32,7 +32,7 @@ router.get('/:username', ensureCorrectUser, async (req, res, next) => {
   }
 });
 
-/** GET /:username/to - get messages to user
+/** get messages to user
  *
  * => {messages: [{id,
  *                 body,
@@ -50,7 +50,7 @@ router.get('/:username/to', ensureCorrectUser, async (req, res, next) => {
   }
 });
 
-/** GET /:username/from - get messages from user
+/** get messages from user
  *
  * => {messages: [{id,
  *                 body,

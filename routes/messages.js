@@ -5,7 +5,7 @@ const Message = require('../models/message');
 const { ensureLoggedIn } = require('../middleware/auth');
 const ExpressError = require('../expressError');
 
-/** GET /:id - get detail of message.
+/** get detail of message.
  *
  * => {message: {id,
  *               body,
@@ -35,7 +35,7 @@ router.get('/:id', ensureLoggedIn, async (req, res, next) => {
   }
 });
 
-/** POST / - post message.
+/** post message.
  *
  * {to_username, body} =>
  *   {message: {id, from_username, to_username, body, sent_at}}
@@ -55,7 +55,7 @@ router.post('/', ensureLoggedIn, async (req, res, next) => {
   }
 });
 
-/** POST/:id/read - mark message as read:
+/** mark message as read:
  *
  *  => {message: {id, read_at}}
  *

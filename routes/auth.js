@@ -6,7 +6,7 @@ const User = require('../models/user');
 const { SECRET_KEY } = require('../config');
 const ExpressError = require('../expressError');
 
-/** POST /login - login: {username, password} => {token} **/
+/** login: {username, password} => {token} **/
 
 router.post('/login', async (req, res, next) => {
   try {
@@ -26,7 +26,7 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
-/** POST /register - register user: registers, logs in, and returns token.
+/** register user: registers, logs in, and returns token.
  * {username, password, first_name, last_name, phone} => {token}.
  */
 
@@ -37,7 +37,6 @@ router.post('/register', async (req, res, next) => {
     User.updateLoginTimestamp(username);
     return res.json({ token });
   } catch (err) {
-    console.log(err);
     if (err.code === '23505') {
       return next(
         new ExpressError('Username taken, please pick another.', 400)
