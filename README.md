@@ -1,4 +1,4 @@
-# **Express Calculator**
+# **Express Message.ly**
 
 ## **Overview**
 
@@ -56,11 +56,19 @@ This exercise is meant to teach and reinforce useful common patterns around auth
 
 ## **How to Run**
 
+To run this:
+
 ```bash
 # Clone Repository
 $ git clone https://github.com/cng008/36.1_express-messagely.git
 $ npm install
+$ createdb messagely
 $ psql < data.sql
-$ nodemon server.js
-open http://localhost:3000/auth/register in API viewer
+$ node server.js
+open http://localhost:3000/auth/register in API viewer such as Insomnia or Postman
 ```
+
+Tests are run using Jest and Supertest. Make sure Jest is installed globally.
+To run the tests:
+
+    jest -i
